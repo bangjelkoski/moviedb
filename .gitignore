@@ -1,0 +1,16 @@
+.DS_Store
+node_modules/
+npm-debug.
+dist/assets/css/moviedb.css
+yarn-error.log
+vue.log
+task.log
+config/config.js
+
+# Editor directories and files
+.env
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln

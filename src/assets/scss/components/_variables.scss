@@ -1,0 +1,39 @@
+$fa-font-path: "font-awesome/fonts" !default;
+$icon-font-path: 'bootstrap-sass/assets/fonts/bootstrap/' !default;
+
+// Colors
+$primary-color: #00c7a3;
+$secondary-color: #333e50;
+$primary-text: #ababab;
+
+// Navigation
+$nav-color: #fff;
+$nav-size: 16px;
+$nav-hover-color: $primary-color;
+
+// Title
+$title-size: 28px;
+$title-weight: 600;
+$title-color: #fff;
+
+// Logo
+$logo-weight: 600;
+$logo-span-weight: 900;
+$logo-size: 28px;
+$logo-color: #fff;
+
+// Slider Items
+$item-title-color: $primary-color;
+$item-title-size: 18px;
+
+// Fonts
+$font-family: 'Montserrat', sans-serif;
+
+// Forms
+$search-field-border: #f8f8f8;
+$search-field-color: #f8f8f8;
+
+
+// Responsive Breakpoints
+$min-width: 0px;
+$max-width:	769px;

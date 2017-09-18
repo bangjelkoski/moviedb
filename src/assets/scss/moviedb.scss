@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,700,900&subset=latin-ext');
+
+// Components and Plugins
+@import "components/variables";
+@import "components/mixins";
+@import "font-awesome/scss/font-awesome";
+@import "bootstrap-sass/assets/stylesheets/bootstrap";
+
+@import "components/content";
+@import "components/header";
+@import "components/footer";
+@import "components/forms";
+@import "components/slider";
+@import "components/slick";

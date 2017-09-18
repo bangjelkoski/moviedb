@@ -1,0 +1,27 @@
+footer{
+	position: fixed !important;
+	bottom: 0;
+	padding: 5px 0;
+	right: 0;
+	z-index: 9;
+	left: 0;
+
+	.copyright, .credits{
+		color: darken($primary-text, 20);
+		font-size: 12px;
+		@extend .col-md-6;
+		@extend .col-sm-12;
+
+		a{
+			color: $primary-color;
+			cursor: pointer;
+		}
+	}
+
+	.copyright{
+		text-align: left;
+	}
+	.credits{
+		text-align: right;
+	}
+}

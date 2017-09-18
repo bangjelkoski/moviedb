@@ -1,0 +1,66 @@
+header{
+
+	#logo{
+		color: $logo-color;
+		font-size: $logo-size;
+		font-weight: $logo-weight;
+		padding-top: 20px;
+		padding-left: 0px;
+		@extend .col-md-4;
+		@extend .col-sm-12;
+
+		span{
+			color: $primary-color;
+			font-weight: $logo-span-weight;
+		}
+	}
+
+	#navigation{
+		@extend .col-md-8;
+		padding-top: 20px;
+		padding-right: 0px;
+
+		ul{
+			padding-left: 0;
+			float: right;
+			margin-bottom: 0;
+
+			li{
+				list-style-type: none;
+				display: inline-block;
+				padding: 8px 12px;
+
+				a{
+					color: $nav-color;
+					font-size: $nav-size;
+					@extend .ease-in-transition;
+
+					&:hover{
+						color: $nav-hover-color;
+					}
+
+				}
+				
+				&:last-of-type{
+					padding-right: 0;
+				}
+
+				&.active-nav{
+					a{
+						color: $nav-hover-color;
+					}
+				}
+
+			}
+		}
+
+	}
+
+	#search{
+		margin-top: 20px;
+		padding-left: 0;
+		padding-right: 0;
+		@extend .col-sm-12;
+	}
+	
+}

@@ -1,0 +1,50 @@
+$prefixes: ("-webkit-", "-moz-", "-o-", "-ms-", "");
+@mixin prefix($property, $value) {
+    @each $prefix in $prefixes {
+        #{$prefix}#{$property}: #{$value};
+    }
+}
+
+@mixin bg-prefix($property, $value) {
+    @each $prefix in $prefixes {
+        #{$property}: #{$prefix}#{$value};
+    }
+}
+
+@mixin linear-gradient($fromColor, $toColor) {
+    background-color: $toColor;
+    background-image: -webkit-gradient(linear, left top, left bottom, from($fromColor), to($toColor));
+    @each $prefix in $prefixes {
+        background-image: #{$prefix}-linear-gradient(top, $fromColor, $toColor);
+    }
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, StartColorStr='#{$fromColor}', EndColorStr='#{$toColor}');
+}
+
+@mixin keyframes($animationName) {
+    @-webkit-keyframes #{$animationName} {
+        @content;
+    }
+    @-moz-keyframes #{$animationName} {
+        @content;
+    }
+    @-o-keyframes #{$animationName} {
+        @content;
+    }
+    @keyframes #{$animationName} {
+        @content;
+    }
+}
+
+@mixin placeholder($value){
+  &::-webkit-input-placeholder {color: $color;}
+  &:-moz-placeholder           {color: $color;}
+  &::-moz-placeholder          {color: $color;}
+  &:-ms-input-placeholder      {color: $color;}  
+} 
+
+.linear-transition{
+   @include prefix('transition', 'all 0.2s linear');
+}
+.ease-in-transition{
+   @include prefix('transition', 'all 0.2s ease-in');
+}

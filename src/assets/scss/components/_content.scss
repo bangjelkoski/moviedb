@@ -1,0 +1,110 @@
+html, body{
+	height: 100%;
+	min-height: 100%;
+	margin: 0;
+}
+body{
+	font-family: $font-family;
+}
+a{
+	text-decoration: none !important;
+}
+p{
+	color: $primary-text;
+}
+#bg-image{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	background-size: cover;
+
+	&:after{
+		content: '';
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		@include bg-prefix('background', 'linear-gradient(rgba(17, 17, 17,.5) 10%, rgba(0,0,0,.5) 40%, rgba(17, 17, 17,.5) 90%)');
+	}
+}	
+.wrapper{
+	@extend .container;
+
+	.wrapper-inner{
+		@extend .row;
+
+		header, #content, footer{
+			@extend .col-lg-8;
+			@extend .col-md-10;
+			@extend .col-sm-12;
+			@extend .col-lg-offset-2;
+			@extend .col-md-offset-1;
+			z-index: 9;
+
+		}
+	}
+}
+#content{
+	margin-top: 15px;
+	overflow: hidden;
+
+	.content{
+		background: rgba(0, 0, 0, 0.6);
+		padding: 15px;
+		min-height: 75vh;
+		height: auto;
+		overflow-y: auto;
+		position: relative;
+		opacity: 1;
+		
+
+		.page-title{
+		
+			h2{
+				margin-top: 0;
+				font-weight: $title-weight;
+				font-size: $title-size;
+				color: $title-color;
+				text-transform: uppercase;
+			}
+		}
+
+		&:after{
+			content: '';
+			display: block;
+			visibility: hidden;
+		    opacity: 0;
+		    height: 100%;
+		    position: absolute;
+		    top: 0;
+		    left: 0;
+		    width: 100%;
+		    background: rgba(0, 0, 0, 1) url('../images/loader.gif') 50% 20% no-repeat;
+			@extend .ease-in-transition;
+		}
+	}
+
+	&.loading{
+		
+		.content{
+
+			&:after{
+			    opacity: 1 !important;
+			    visibility: visible;
+			}
+		}
+	}
+}
+
+.center-align{
+	height: 100%;
+    width: 100%;
+    display: table !important;
+    
+    .center-align-inner{
+		padding: 10px;
+	    display: table-cell !important;
+	    vertical-align: middle;
+	    text-align: center;
+    }
+}

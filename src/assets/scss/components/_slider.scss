@@ -1,0 +1,36 @@
+.item{
+    width: 30%; 
+    height: 200px;
+    margin-right: 10px;
+    background: white;
+    position: relative;
+	cursor: pointer;
+
+    .item-image{
+		width: 100%;
+		height: auto;
+		overflow: hidden;
+    }
+
+    .item-title{
+    	opacity: 0;
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		left: 0;
+		top: 0;
+		background: rgba(0, 0, 0, 0.7);
+		@extend .ease-in-transition;
+
+		p{
+			color: $item-title-color;
+			font-size: $item-title-size;
+		}
+    }
+
+    &:hover{
+		.item-title{
+			opacity: 1;
+		}
+    }
+}

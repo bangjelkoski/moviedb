@@ -1,0 +1,50 @@
+.input-container{
+	width: 100%;
+	position: relative;
+
+	.input-field{
+		width: 100%;
+		padding: 10px 35px 10px 5px;
+		
+		&.input-search{
+			background: transparent;
+			border: none;
+			padding-left: 0;
+			border-bottom: 1px solid $search-field-border;
+			color: $search-field-color;
+			
+			@extend .ease-in-transition;
+			@include placeholder(darken($search-field-color, 20));
+		}
+
+		&:focus{
+			border-bottom-color: $primary-color;
+			outline: none;
+		}
+
+	}
+
+	.input-icon{
+		position: absolute;
+		@extend .ease-in-transition;
+
+		&.input-search-icon{
+			color: $primary-text;
+			top: 5px;
+			right: 10px;
+			font-size: 25px;
+		}
+
+	}
+
+	&.input-active{
+
+		.input-icon{
+
+			&.input-search-icon{
+				color: $primary-color;
+			}
+
+		}
+	}
+}
