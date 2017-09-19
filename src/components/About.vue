@@ -13,6 +13,7 @@
   export default {
     	created(){
     		this.$emit('loadingStart'); // Initiate loading
+    		this.$emit('resetSearch'); // Initiate loading
     		setTimeout(() => {this.$emit('loadingEnd');}, 600); // Close Loading animation
     	}
   }
