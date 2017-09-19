@@ -19,6 +19,15 @@ export const HomeHttp = {
 	},
 }
 
+export const HeaderHttp = {
+
+	// Get Movie by Id
+	getMovies: (keyword) => {
+		return Vue.http.get('search/movie?query='+ keyword + '&api_key='+config.API_KEY);
+	},
+}
+
+
 export const MovieHttp = {
 
 	// Get Movie by Id

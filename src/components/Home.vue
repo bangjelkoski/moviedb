@@ -4,7 +4,7 @@
 		  	<h2>Popular Movies</h2>
 		 </div>
 		 <flickity v-if="sliderInit" ref="flickity-popular"  :options="sliderOptions">
-		 	<div class="item" v-for="movie in popularMoviesFiltered">
+		 	<div class="item" v-for="movie in popularMoviesFiltered" @click="loadMovie(movie.id)">
 		 		<img :src="posterPath + movie.poster_path" class="item-image" :alt="movie.title"/>
 		 		<div class="item-title">
 		 			<div class="center-align">
@@ -20,7 +20,7 @@
 		  	<h2>Upcoming Movies</h2>
 		  </div>
 		 <flickity v-if="sliderInit" ref="flickity-upcoming" :options="sliderOptions">
-		 	<div class="item" v-for="movie in upcomingMoviesFiltered">
+		 	<div class="item" v-for="movie in upcomingMoviesFiltered" @click="loadMovie(movie.id)">
 		 		<img :src="posterPath + movie.poster_path" class="item-image" :alt="movie.title"/>
 		 		<div class="item-title">
 		 			<div class="center-align">
@@ -59,8 +59,8 @@
   		fetchData(){
   			let self = this;
 
-  			HomeHttp.getUpcomingMovies().then(shows => {
-		    	this.upcomingMovies = shows.data.results;
+  			HomeHttp.getUpcomingMovies().then(movies => {
+		    	this.upcomingMovies = movies.data.results;
 
 
 		    	HomeHttp.getPopularMovies().then(movies => {
@@ -76,9 +76,12 @@
 			});
 
   		},
+  		loadMovie(id, event){
+  			this.$router.push({'name': 'movie', params: {id: id}}); // Load the movie with the given id
+  		}
   	},
 	created(){
-		this.$emit('homeVisited'); // Change to default background if we go to the homepage
+		this.$emit('resetBg'); // Change to default background if we go to the homepage
 		this.$emit('loadingStart'); // Initiate loading
 
 		this.fetchData(); // Fetch the data from the API

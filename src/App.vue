@@ -9,15 +9,17 @@
       <div class="wrapper"> 
         <div class="wrapper-inner">
 
-            <appHeader></appHeader> <!-- The header of the app -->
+            <appHeader :resetSearch="resetSearch" :currentMovie="currentMovie" @resetSearch="resetSearch = false"></appHeader> <!-- The header of the app -->
 
             <div id="content" :class="{ 'loading' : loading }"> <!-- Main Content of the app -->
 
                 <router-view 
-                  @homeVisited="movieBg = false" 
+                  @resetBg="movieBg = false"
+                  @resetSearch="resetSearch = true" 
                   @loadingEnd="loading = false"
                   @loadingStart="loading = true"
                   @movieLoaded="movieLoaded($event)"
+                  @setSearch="currentMovie = $event"
                   :sliderOptions="sliderOptions"
                   :posterPath="posterPath"
                   :backgroundPath="backgroundPath"
@@ -47,6 +49,8 @@
             backgroundPath: 'https://image.tmdb.org/t/p/original',  // background path
             movieBg: false, // if movie background is loaded (for animation) 
             loading: false, // if data is being lodaed (for animation)
+            currentMovie: '', // To show the current movie in the search bar
+            resetSearch: false,
             sliderOptions: {  // slider for homepage - options
                 prevNextButtons: false,
                 pageDots: true,

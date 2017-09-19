@@ -8,9 +8,6 @@
 		 	</div>
 		 	<div class="item-data">
 		 		<h3 class="item-title">{{ movie.title }}</h3>
-		 		<transition name="fade" mode="out-in"> 
-		 			<div :key="'item-refresh'" class="item-refresh" @click="refresh" v-show="showRefresh"><i class="fa fa-refresh"></i></div>
-		 		</transition>
 		 		<p>{{ movie.overview }}</p>
 				<div class="item-info">
 					<div class="item-info-col">
@@ -41,41 +38,34 @@
   export default {
   	data(){
   		return {
-  			maxID: 45000,
+  			movieId: '',
   			movie: '',
   			movieLoaded: false,
-  			showRefresh: true,
   		}
   	},
   	props: ['posterPath', 'backgroundPath'],
   	methods: {
-  		fetchData(){
+  		init(id){
+  			this.movieId = id;
+			this.$emit('loadingStart'); // Initiate loading
+			this.fetchData(this.movieId);
+  		},
+  		fetchData(id){
   			var self = this;
-  			let id = Math.floor(Math.random() * this.maxID) + 1;
 
   			MovieHttp.getMovie(id).then(movie => {
   				this.movie = movie.body;
-  				if(this.movie.backdrop_path && this.movie.poster_path){	  				
-	  				this.movieLoaded = true;
+  				this.movieLoaded = true;
 
-	  				// Change the background image
-	  				self.$emit('movieLoaded', this.backgroundPath + this.movie.backdrop_path); 
-
-					// Load the movie and allow refreshing with a delay so images are loaded properly
-	  				setTimeout(() => { this.showRefresh = true; self.$emit('loadingEnd'); }, 1000); 
-  				}else{
-  					this.fetchData(); 
-  				}
+  				// Change the background image
+  				self.$emit('movieLoaded', this.backgroundPath + this.movie.backdrop_path); 
+				// Load the movie and allow refreshing with a delay so images are loaded properly
+  				setTimeout(() => { self.$emit('loadingEnd'); }, 1000); 
+  				self.$emit('setSearch', movie.body.title);
   			}, error => {
-  				this.fetchData(); // If the movie with that ID doesnt exist, fetch new movie
+  				 // Some Error Happened
   			})
   		},
-  		refresh(){
-  			this.showRefresh = false;
-  			this.$emit('loadingStart'); // Initiate loading
-  			this.$emit('resetBg', true);
-			this.fetchData(); // Fetch new movie
-  		}
   	},
   	computed: {
   		formatedRevenue(){
@@ -85,12 +75,19 @@
   			return this.movie.vote_average ? this.movie.vote_average + ' / 10' : '-';
   		}
   	},
+  	watch: {
+  		'$route' (to, from) { // Watch if change in the route happens only in the ID parameter
+	      if(to.params.id !== from.params.id){
+	      		this.init(to.params.id);
+	      }
+	    }
+  	},
 	created(){
-		this.$emit('loadingStart'); // Initiate loading
-		this.fetchData(); // Fetch movie
+		this.init(this.$route.params.id);
 	},
 	beforeDestroy(){
-		this.$emit('resetBg', true); // To load the main background when moving to another route than Home
+		this.$emit('resetBg'); // To load the main background when moving to another route than Home
+		this.$emit('resetSearch'); // To reset any keyword that we have in the search field
 	}
   }
 </script>
