@@ -11,6 +11,7 @@ a{
 }
 p{
 	color: $primary-text;
+	font-size: $primary-text-size;
 }
 #bg-image{
 	position: absolute;
@@ -18,7 +19,20 @@ p{
 	height: 100%;
 	z-index: 1;
 	background-size: cover;
+	background: #212121;
+	@extend .ease-in-transition;
 
+	img{
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		opacity: 0;
+		@extend .ease-in-transition;
+
+		&.bg-active{
+			opacity: 1 !important;
+		}
+	}
 	&:after{
 		content: '';
 		position: absolute;
@@ -34,11 +48,10 @@ p{
 		@extend .row;
 
 		header, #content, footer{
-			@extend .col-lg-8;
-			@extend .col-md-10;
+			@extend .col-lg-10;
+			@extend .col-md-12;
 			@extend .col-sm-12;
-			@extend .col-lg-offset-2;
-			@extend .col-md-offset-1;
+			@extend .col-lg-offset-1;
 			z-index: 9;
 
 		}
@@ -94,6 +107,14 @@ p{
 			}
 		}
 	}
+}
+
+// Transitions
+.fade-enter-active, .fade-leave-active {
+  @extend .ease-in-transition;
+}
+.fade-enter, .fade-leave{
+  opacity: 0
 }
 
 .center-align{

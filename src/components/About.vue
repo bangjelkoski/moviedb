@@ -12,8 +12,8 @@
 <script>
   export default {
     	created(){
-    		this.$emit('loadingInit'); // Initiate loading
-    		setTimeout(() => {this.$emit('loadingCompleted');}, 600); // Close Loading animation
+    		this.$emit('loadingStart'); // Initiate loading
+    		setTimeout(() => {this.$emit('loadingEnd');}, 600); // Close Loading animation
     	}
   }
 </script>

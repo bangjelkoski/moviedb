@@ -4,7 +4,8 @@ $icon-font-path: 'bootstrap-sass/assets/fonts/bootstrap/' !default;
 // Colors
 $primary-color: #00c7a3;
 $secondary-color: #333e50;
-$primary-text: #ababab;
+$primary-text: #eee;
+$primary-text-size: 15px;
 
 // Navigation
 $nav-color: #fff;
@@ -15,6 +16,13 @@ $nav-hover-color: $primary-color;
 $title-size: 28px;
 $title-weight: 600;
 $title-color: #fff;
+
+// Movie Item
+$movie-title-color: #fff;
+$movie-title-size: 28px;
+$movie-title-weight: 600;
+$movie-span-size: 28px;
+$movie-span-color: $primary-color;
 
 // Logo
 $logo-weight: 600;
@@ -32,7 +40,6 @@ $font-family: 'Montserrat', sans-serif;
 // Forms
 $search-field-border: #f8f8f8;
 $search-field-color: #f8f8f8;
-
 
 // Responsive Breakpoints
 $min-width: 0px;

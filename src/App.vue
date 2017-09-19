@@ -1,6 +1,10 @@
 <template>
   <div id="app"> <!-- The main Application -->
-      <div id="bg-image" :style="bgImage"></div> <!-- Div to change the main background image -->
+      <div id="bg-image">
+          <img :class="{'bg-active' : !movieBg }" src="/dist/assets/images/bg.jpeg"/>
+          <transition name="fade" mode="in-out"> 
+            <img :key="'bg-image'" :class="{'bg-active' : movieBg }" :src="backgroundImage" /></transition>
+      </div> <!-- Div to change the main background image -->
       
       <div class="wrapper"> 
         <div class="wrapper-inner">
@@ -10,11 +14,13 @@
             <div id="content" :class="{ 'loading' : loading }"> <!-- Main Content of the app -->
 
                 <router-view 
-                  @homeVisited="backgroundImage = '/dist/assets/images/bg.jpeg'" 
-                  @loadingCompleted="loading = false"
-                  @loadingInit="loading = true"
+                  @homeVisited="movieBg = false" 
+                  @loadingEnd="loading = false"
+                  @loadingStart="loading = true"
+                  @movieLoaded="movieLoaded($event)"
                   :sliderOptions="sliderOptions"
                   :posterPath="posterPath"
+                  :backgroundPath="backgroundPath"
                   ></router-view> 
 
             </div>
@@ -36,10 +42,12 @@
   export default {
     data(){
         return {
-            backgroundImage: '/dist/assets/images/bg.jpeg',
-            posterPath: 'https://image.tmdb.org/t/p/w500',
-            loading: false,
-            sliderOptions: {
+            backgroundImage: '/dist/assets/images/bg.jpeg', // the background image
+            posterPath: 'https://image.tmdb.org/t/p/w500',  // poster path 
+            backgroundPath: 'https://image.tmdb.org/t/p/original',  // background path
+            movieBg: false, // if movie background is loaded (for animation) 
+            loading: false, // if data is being lodaed (for animation)
+            sliderOptions: {  // slider for homepage - options
                 prevNextButtons: false,
                 pageDots: true,
                 wrapAround: true,
@@ -48,11 +56,14 @@
             },
         }
     },
-    computed: {
-        bgImage(){
-            return {
-                backgroundImage: 'url('+ this.backgroundImage +')',
-            }
+    methods: {
+        movieLoaded(data){
+            this.backgroundImage = data;
+
+            // Add some delay for the image to actually load
+            setTimeout(() => {
+                this.movieBg = true;
+            }, 1000)
         }
     },
     components: {

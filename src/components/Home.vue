@@ -65,7 +65,7 @@
 
 		    	HomeHttp.getPopularMovies().then(movies => {
 			    	this.popularMovies = movies.data.results;
-			    	self.$emit('loadingCompleted') 
+			    	self.$emit('loadingEnd') 
 			    	this.sliderInit = true;
 				}, error => {
 					// Handle Error
@@ -79,7 +79,7 @@
   	},
 	created(){
 		this.$emit('homeVisited'); // Change to default background if we go to the homepage
-		this.$emit('loadingInit'); // Initiate loading
+		this.$emit('loadingStart'); // Initiate loading
 
 		this.fetchData(); // Fetch the data from the API
 	},
