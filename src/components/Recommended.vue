@@ -63,6 +63,7 @@
 
 					// Load the movie and allow refreshing with a delay so images are loaded properly
 	  				setTimeout(() => { this.showRefresh = true; self.$emit('loadingEnd'); }, 1000); 
+	  				self.$emit('setSearch', movie.body.title);
   				}else{
   					this.fetchData(); 
   				}
