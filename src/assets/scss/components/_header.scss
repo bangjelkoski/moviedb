@@ -71,6 +71,8 @@ header{
 			top: 40px;
 			left: 0;
 			background: rgba(17, 17, 17, 0.90);
+			height: 225px;
+			overflow-y: auto;
 			@include prefix('box-shadow', 0 4px 8px rgba(0, 0, 0, .8));
 			@extend .ease-in-transition;
 
